@@ -568,6 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d55224c81945dca29a849cc07806d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  characterController: {fileID: 1024025297}
 --- !u!143 &1024025297
 CharacterController:
   m_ObjectHideFlags: 0
