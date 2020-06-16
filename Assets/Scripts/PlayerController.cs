@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public CharacterController characterController;
+    public Transform camTransform;
 
     private Vector3 moveInput;
 
@@ -22,5 +23,16 @@ public class PlayerController : MonoBehaviour
         moveInput.z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
         characterController.Move(moveInput);
+
+        // controll camera rotation
+        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+
+        transform.rotation = Quaternion.Euler(
+            transform.rotation.eulerAngles.x,
+            transform.rotation.eulerAngles.y + mouseInput.x,
+            transform.rotation.eulerAngles.z
+        );
+
+        camTransform.rotation = Quaternion.Euler(camTransform.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
     }
 }
