@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public CharacterController characterController;
     public Transform camTransform;
 
+    public float mouseSensitivity = 2;
+    public bool invertX;
+    public bool invertY;
+
     private Vector3 moveInput;
 
     // Start is called before the first frame update
@@ -25,7 +29,16 @@ public class PlayerController : MonoBehaviour
         characterController.Move(moveInput);
 
         // controll camera rotation
-        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
+
+        if (invertX)
+        {
+            mouseInput.x = -mouseInput.x;
+        }
+        if (invertY)
+        {
+            mouseInput.y = -mouseInput.y;
+        }
 
         transform.rotation = Quaternion.Euler(
             transform.rotation.eulerAngles.x,
