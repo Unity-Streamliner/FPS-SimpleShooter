@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float gravityModifier;
     public CharacterController characterController;
     public Transform camTransform;
 
@@ -26,11 +27,22 @@ public class PlayerController : MonoBehaviour
         //moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         //moveInput.z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
+        // store y velocity
+        float yStore = moveInput.y;
+
         Vector3 vertMove = transform.forward * Input.GetAxis("Vertical");
         Vector3 horiMove = transform.right * Input.GetAxis("Horizontal");
 
         moveInput = (vertMove + horiMove) * moveSpeed * Time.deltaTime;
         moveInput.Normalize();
+
+        moveInput.y = yStore;
+        moveInput.y += Physics.gravity.y * gravityModifier * Time.deltaTime;
+
+        if (characterController.isGrounded)
+        {
+            moveInput.y = Physics.gravity.y * gravityModifier; 
+        }
 
         characterController.Move(moveInput);
 

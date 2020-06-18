@@ -655,7 +655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d55224c81945dca29a849cc07806d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 1
+  gravityModifier: 2
   characterController: {fileID: 1024025297}
   camTransform: {fileID: 816934506}
   mouseSensitivity: 2
