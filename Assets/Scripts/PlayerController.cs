@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float gravityModifier;
+    public float jumpPower;
     public CharacterController characterController;
     public Transform camTransform;
 
@@ -14,6 +15,10 @@ public class PlayerController : MonoBehaviour
     public bool invertY;
 
     private Vector3 moveInput;
+
+    private bool canJump;
+    public Transform groundCheckPoint;
+    public LayerMask whatIsGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -33,18 +38,26 @@ public class PlayerController : MonoBehaviour
         Vector3 vertMove = transform.forward * Input.GetAxis("Vertical");
         Vector3 horiMove = transform.right * Input.GetAxis("Horizontal");
 
-        moveInput = (vertMove + horiMove) * moveSpeed * Time.deltaTime;
+        moveInput = vertMove + horiMove;
         moveInput.Normalize();
+        moveInput = moveInput * moveSpeed;
 
         moveInput.y = yStore;
         moveInput.y += Physics.gravity.y * gravityModifier * Time.deltaTime;
 
         if (characterController.isGrounded)
         {
-            moveInput.y = Physics.gravity.y * gravityModifier; 
+            moveInput.y = Physics.gravity.y * gravityModifier * Time.deltaTime; 
         }
 
-        characterController.Move(moveInput);
+        canJump = Physics.OverlapSphere(groundCheckPoint.position, 0.25f, whatIsGrounded).Length > 0;
+
+        // Handle Jumping
+        if (Input.GetKeyDown(KeyCode.Space) && canJump) {
+            moveInput.y = jumpPower;
+        }
+
+        characterController.Move(moveInput * Time.deltaTime);
 
         // controll camera rotation
         Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
