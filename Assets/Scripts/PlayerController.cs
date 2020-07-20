@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveInput;
 
     private bool canJump;
+    private bool canDoubleJump;
     public Transform groundCheckPoint;
     public LayerMask whatIsGrounded;
 
@@ -52,9 +53,20 @@ public class PlayerController : MonoBehaviour
 
         canJump = Physics.OverlapSphere(groundCheckPoint.position, 0.25f, whatIsGrounded).Length > 0;
 
+        if (canJump)
+        {
+            canDoubleJump = false;
+        }
+
         // Handle Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && canJump) {
+        if (Input.GetKeyDown(KeyCode.Space) && canJump) 
+        {
             moveInput.y = jumpPower;
+            canDoubleJump = true;
+        } else if (canDoubleJump && Input.GetKeyDown(KeyCode.Space))
+        {
+            moveInput.y = jumpPower;
+            canDoubleJump = false;
         }
 
         characterController.Move(moveInput * Time.deltaTime);
