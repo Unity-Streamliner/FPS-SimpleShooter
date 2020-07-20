@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     public LayerMask whatIsGrounded;
 
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,5 +99,8 @@ public class PlayerController : MonoBehaviour
         );
 
         camTransform.rotation = Quaternion.Euler(camTransform.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
+
+        animator.SetFloat("moveSpeed", moveInput.magnitude);
+        animator.SetBool("onGround", canJump);
     }
 }
