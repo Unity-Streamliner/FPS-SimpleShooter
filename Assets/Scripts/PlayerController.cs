@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float runSpeed = 12f;
     public float gravityModifier;
     public float jumpPower;
     public CharacterController characterController;
@@ -41,7 +42,13 @@ public class PlayerController : MonoBehaviour
 
         moveInput = vertMove + horiMove;
         moveInput.Normalize();
-        moveInput = moveInput * moveSpeed;
+        if (Input.GetKey(KeyCode.LeftShift)) 
+        {
+            moveInput = moveInput * runSpeed;
+        } else 
+        {
+            moveInput = moveInput * moveSpeed;
+        }
 
         moveInput.y = yStore;
         moveInput.y += Physics.gravity.y * gravityModifier * Time.deltaTime;
