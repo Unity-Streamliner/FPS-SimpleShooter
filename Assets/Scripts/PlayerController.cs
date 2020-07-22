@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
         camTransform.rotation = Quaternion.Euler(camTransform.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
+        print("Speed = " + moveInput.magnitude);
         animator.SetFloat("moveSpeed", moveInput.magnitude);
         animator.SetBool("onGround", canJump);
     }
