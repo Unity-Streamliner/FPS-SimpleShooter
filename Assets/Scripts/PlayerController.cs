@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject bullet;
+    public Transform firePoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +102,12 @@ public class PlayerController : MonoBehaviour
         );
 
         camTransform.rotation = Quaternion.Euler(camTransform.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
+
+        // Handle shooting
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        }
 
         print("Speed = " + moveInput.magnitude);
         animator.SetFloat("moveSpeed", moveInput.magnitude);
