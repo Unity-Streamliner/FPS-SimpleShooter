@@ -7,6 +7,7 @@ public class BulletController : MonoBehaviour
     public float moveSpeed;
     public float lifeTime;
     public Rigidbody rigidbody;
+    public GameObject impactEffect;
     void Start()
     {
         
@@ -27,5 +28,6 @@ public class BulletController : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         Destroy(this.gameObject);
+        Instantiate(impactEffect, transform.position, transform.rotation);
     }
 }
