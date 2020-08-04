@@ -106,6 +106,17 @@ public class PlayerController : MonoBehaviour
         // Handle shooting
         if (Input.GetMouseButtonDown(0))
         {
+            RaycastHit hit;
+            if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, 50f)) 
+            {
+                if (Vector3.Distance(camTransform.position, hit.point) > 2f)
+                {
+                    firePoint.LookAt(hit.point);
+                }
+            } else 
+            {
+                firePoint.LookAt(camTransform.position + (camTransform.forward * 30f));
+            }
             Instantiate(bullet, firePoint.position, firePoint.rotation);
         }
 
