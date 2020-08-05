@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     public float lifeTime;
     public Rigidbody rigidbody;
     public GameObject impactEffect;
+    public int damage;
     void Start()
     {
         
@@ -29,7 +30,7 @@ public class BulletController : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage);
         }
         Destroy(this.gameObject);
         Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation);
