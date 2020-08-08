@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
     public float moveSpeed;
-    public Rigidbody rigidbody;
     private bool chasing;
     public float distanceToChase = 10f;
     public float distanceToLose = 15f;
     private Vector3 targetPoint;
+    public NavMeshAgent navMeshAgent;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +30,7 @@ public class EnemyController : MonoBehaviour
             }
         } else 
         {
-            transform.LookAt(targetPoint);
-            rigidbody.velocity = transform.forward * moveSpeed;
-
+            navMeshAgent.destination = targetPoint;
             if (Vector3.Distance(transform.position, targetPoint) > distanceToLose)
             {
                 chasing = false;
