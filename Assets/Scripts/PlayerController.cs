@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour
             Instantiate(bullet, firePoint.position, firePoint.rotation);
         }
 
-        print("Speed = " + moveInput.magnitude);
         animator.SetFloat("moveSpeed", moveInput.magnitude);
         animator.SetBool("onGround", canJump);
     }

@@ -9,6 +9,9 @@ public class BulletController : MonoBehaviour
     public Rigidbody rigidbody;
     public GameObject impactEffect;
     public int damage;
+    public bool damageEnemy;
+    public bool damagePlayer;
+
     void Start()
     {
         
@@ -28,9 +31,12 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && damageEnemy)
         {
             other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage);
+        }
+        if (other.tag == "Player" && damagePlayer) {
+            Debug.Log("Hit player at " + transform.position);
         }
         Destroy(this.gameObject);
         Instantiate(impactEffect, transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)), transform.rotation);
