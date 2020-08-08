@@ -18,10 +18,17 @@ public class EnemyController : MonoBehaviour
     public Transform firePoint;
     public float fireRate;
     private float fireCount;
+    public float waitBetweenShots = 2f;
+    private float shotWaitCounter;
+    public float timeToShoot = 1f;
+    private float shootTimeCounter;
     // Start is called before the first frame update
     void Start()
     {
         initialPosition = transform.position;
+
+        shootTimeCounter = timeToShoot;
+        shotWaitCounter = waitBetweenShots;
     }
 
     // Update is called once per frame
@@ -34,7 +41,8 @@ public class EnemyController : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPoint) < distanceToChase) 
             {
                 chasing = true;
-                fireRate = 1f;
+                shootTimeCounter = timeToShoot;
+                shotWaitCounter = waitBetweenShots;
             }
 
             if (chaseCounter > 0)
@@ -59,11 +67,29 @@ public class EnemyController : MonoBehaviour
                 chasing = false;
                 chaseCounter = keepChasingTime;
             } 
-            fireCount -= Time.deltaTime;
-            if (fireCount <= 0)
+            if (shotWaitCounter > 0) 
             {
-                fireCount = fireRate;
-                Instantiate(bullet, firePoint.position, firePoint.rotation);
+                shotWaitCounter -= Time.deltaTime;
+                if (shotWaitCounter <= 0) 
+                {
+                    shootTimeCounter = timeToShoot;
+                }
+            } else 
+            {
+                shootTimeCounter -= Time.deltaTime;
+                if (shootTimeCounter > 0)
+                {
+                    fireCount -= Time.deltaTime;
+                    if (fireCount <= 0)
+                    {
+                        fireCount = fireRate;
+                        Instantiate(bullet, firePoint.position, firePoint.rotation);
+                    }
+                    navMeshAgent.destination = transform.position;
+                } else 
+                {
+                    shotWaitCounter = waitBetweenShots;
+                }
             }
         }
 
