@@ -113,7 +113,7 @@ MonoBehaviour:
   rigidbody: {fileID: 8813979908884519209}
   impactEffect: {fileID: 4640164085500573323, guid: 432d4da1c2fa64096b5e9f42b6d4377b,
     type: 3}
-  damage: 1
+  damage: 10
   damageEnemy: 0
   damagePlayer: 1
 --- !u!54 &8813979908884519209
