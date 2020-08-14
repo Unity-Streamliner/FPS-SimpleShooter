@@ -85,32 +85,36 @@ public class EnemyController : MonoBehaviour
                 animator.SetBool("isMoving", true);
             } else 
             {
-                shootTimeCounter -= Time.deltaTime;
-                if (shootTimeCounter > 0)
+                if (PlayerController.instance.gameObject.activeInHierarchy) 
                 {
-                    fireCount -= Time.deltaTime;
-                    if (fireCount <= 0)
+                    shootTimeCounter -= Time.deltaTime;
+                    if (shootTimeCounter > 0)
                     {
-                        fireCount = fireRate;
-                        firePoint.LookAt(PlayerController.instance.transform.position + new Vector3(0f, 1.2f, 0f));
-                        // check the angle to the player
-                        Vector3 targetDirection = PlayerController.instance.transform.position - transform.position;
-                        float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up); 
-                        if (Mathf.Abs(angle) < 30f)
+                        fireCount -= Time.deltaTime;
+                        if (fireCount <= 0)
                         {
-                            Instantiate(bullet, firePoint.position, firePoint.rotation);
-                            animator.SetTrigger("fireShot");
-                        } else 
-                        {
-                            shotWaitCounter = waitBetweenShots;
+                            fireCount = fireRate;
+                            firePoint.LookAt(PlayerController.instance.transform.position + new Vector3(0f, 1.2f, 0f));
+                            // check the angle to the player
+                            Vector3 targetDirection = PlayerController.instance.transform.position - transform.position;
+                            float angle = Vector3.SignedAngle(targetDirection, transform.forward, Vector3.up); 
+                            if (Mathf.Abs(angle) < 30f)
+                            {
+                                Instantiate(bullet, firePoint.position, firePoint.rotation);
+                                animator.SetTrigger("fireShot");
+                            } else 
+                            {
+                                shotWaitCounter = waitBetweenShots;
+                            }
                         }
+                        navMeshAgent.destination = transform.position;
+                    } else 
+                    {
+                        shotWaitCounter = waitBetweenShots;
                     }
-                    navMeshAgent.destination = transform.position;
-                } else 
-                {
-                    shotWaitCounter = waitBetweenShots;
+                    animator.SetBool("isMoving", false);
                 }
-                animator.SetBool("isMoving", false);
+                
             }
         }
 

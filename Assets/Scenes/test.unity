@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c990d52c8254c38badf495b01ad249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitAfterDying: 2
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,7 +1916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4ef5393bf7b4c8d86d0394c56b0313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
   currentHealth: 0
   invincibleLength: 1
 --- !u!1 &1040280110
