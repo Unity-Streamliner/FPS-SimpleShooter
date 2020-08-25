@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 418622401}
   - component: {fileID: 418622403}
   - component: {fileID: 418622402}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -976,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 252.70953, y: -89.67001}
+  m_AnchoredPosition: {x: 252.70996, y: -89.66992}
   m_SizeDelta: {x: 355.02057, y: 52.827698}
   m_Pivot: {x: 0.5, y: 0.6670422}
 --- !u!114 &556994536
@@ -1501,7 +1501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 277, y: -103.26001}
+  m_AnchoredPosition: {x: 277, y: -103.259766}
   m_SizeDelta: {x: 453, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &762374704
@@ -2102,7 +2102,7 @@ GameObject:
   - component: {fileID: 1062376803}
   - component: {fileID: 1062376805}
   - component: {fileID: 1062376804}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3155,7 +3155,7 @@ GameObject:
   - component: {fileID: 1450602298}
   - component: {fileID: 1450602297}
   - component: {fileID: 1450602296}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CheckPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3598,7 +3598,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 251.5, y: -96.79999}
+  m_AnchoredPosition: {x: 251.5, y: -96.799805}
   m_SizeDelta: {x: 357.43945, y: 56.22577}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1715796725
@@ -3893,7 +3893,7 @@ GameObject:
   - component: {fileID: 1905003070}
   - component: {fileID: 1905003069}
   - component: {fileID: 1905003068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
