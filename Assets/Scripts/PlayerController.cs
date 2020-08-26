@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
         instance = this;
     }
 
+    void Start() 
+    {
+        UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -144,6 +149,7 @@ public class PlayerController : MonoBehaviour
             activeGun.currentAmmo--;
             Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
             activeGun.fireCounter = activeGun.fireRate;
+            UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
         }
     }
 }
