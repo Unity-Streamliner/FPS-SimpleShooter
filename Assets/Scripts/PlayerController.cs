@@ -139,7 +139,11 @@ public class PlayerController : MonoBehaviour
 
     public void FireShot() 
     {
-        Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
-        activeGun.fireCounter = activeGun.fireRate;
+        if (activeGun.currentAmmo > 0)
+        {
+            activeGun.currentAmmo--;
+            Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
+            activeGun.fireCounter = activeGun.fireRate;
+        }
     }
 }
