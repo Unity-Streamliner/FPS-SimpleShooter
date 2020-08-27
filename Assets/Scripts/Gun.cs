@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     public float fireCounter;
 
     public int currentAmmo;
+    public int pickupAmmoAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,11 @@ public class Gun : MonoBehaviour
         if (fireCounter > 0) {
             fireCounter -= Time.deltaTime;
         }
+    }
+
+    public void GetAmmo() 
+    {
+        currentAmmo += pickupAmmoAmount;
+        UIController.instance.ammoText.text = "AMMO: " + currentAmmo;
     }
 }
