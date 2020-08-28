@@ -2181,6 +2181,11 @@ MonoBehaviour:
   bullet: {fileID: 0}
   firePoint: {fileID: 207708316}
   activeGun: {fileID: 1987386427}
+  guns:
+  - {fileID: 1987386427}
+  - {fileID: 1146747874}
+  - {fileID: 1893895739}
+  currentGunIndex: 1
 --- !u!143 &1024025297
 CharacterController:
   m_ObjectHideFlags: 0
