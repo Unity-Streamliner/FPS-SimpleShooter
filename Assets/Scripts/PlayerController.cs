@@ -176,5 +176,7 @@ public class PlayerController : MonoBehaviour
         activeGun.gameObject.SetActive(true);
 
         UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+
+        firePoint.position = activeGun.firePoint.position;
     }
 }
