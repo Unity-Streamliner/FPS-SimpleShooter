@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour
     public List<Gun> guns = new List<Gun>();
     public int currentGunIndex;
 
+    public Transform aimingPoint;
+    public Transform gunHolder;
+    private Vector3 gunStartPosition;
+    public float aimingSpeed = 2f;
+
     void Awake()
     {
         instance = this;
@@ -40,6 +45,8 @@ public class PlayerController : MonoBehaviour
     void Start() 
     {
         SwitchGun();
+
+        gunStartPosition = gunHolder.localPosition;
     }
 
     // Update is called once per frame
@@ -148,6 +155,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             CameraController.instance.zoomOut();
+        }
+
+        // check if is right mouse button is held
+        if (Input.GetMouseButton(1))
+        {
+            gunHolder.position = Vector3.MoveTowards(gunHolder.position, aimingPoint.position, aimingSpeed * Time.deltaTime);
+        } 
+        else {
+            gunHolder.localPosition = Vector3.MoveTowards(gunHolder.localPosition, gunStartPosition, aimingSpeed * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
