@@ -1108,6 +1108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 816934506}
+  zoomSpeed: 5
+  theCamera: {fileID: 534669904}
 --- !u!1 &556994534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2778,7 @@ MonoBehaviour:
   currentAmmo: 120
   pickupAmmoAmount: 30
   firePoint: {fileID: 2116823280}
+  zoomAmount: 40
 --- !u!1001 &1160685626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4703,6 +4706,7 @@ MonoBehaviour:
   currentAmmo: 15
   pickupAmmoAmount: 5
   firePoint: {fileID: 1279376977}
+  zoomAmount: 20
 --- !u!1 &1905003067
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,6 +4902,7 @@ MonoBehaviour:
   currentAmmo: 60
   pickupAmmoAmount: 15
   firePoint: {fileID: 866497263}
+  zoomAmount: 50
 --- !u!1 &2116823279
 GameObject:
   m_ObjectHideFlags: 0

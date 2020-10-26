@@ -140,7 +140,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetMouseButtonDown(1))
+        {
+            CameraController.instance.zoomIn(activeGun.zoomAmount);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            CameraController.instance.zoomOut();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             SwitchGun();
         }
