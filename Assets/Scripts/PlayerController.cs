@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 gunStartPosition;
     public float aimingSpeed = 2f;
 
+    public GameObject muzzleFlash; 
+
     void Awake()
     {
         instance = this;
@@ -120,6 +122,8 @@ public class PlayerController : MonoBehaviour
 
         camTransform.rotation = Quaternion.Euler(camTransform.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
+        muzzleFlash.SetActive(false);
+
         // Handle shooting
         // Single shot
         if (Input.GetMouseButtonDown(0) && activeGun.fireCounter <= 0)
@@ -184,6 +188,8 @@ public class PlayerController : MonoBehaviour
             Instantiate(activeGun.bullet, firePoint.position, firePoint.rotation);
             activeGun.fireCounter = activeGun.fireRate;
             UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
+
+            muzzleFlash.SetActive(true);
         }
     }
 
