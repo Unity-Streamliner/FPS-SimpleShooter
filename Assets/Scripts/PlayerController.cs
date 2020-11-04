@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public Gun activeGun;
     public List<Gun> guns = new List<Gun>();
+    public List<Gun> unlockableGuns = new List<Gun>(); 
     public int currentGunIndex;
 
     public Transform aimingPoint;
@@ -204,5 +205,31 @@ public class PlayerController : MonoBehaviour
         UIController.instance.ammoText.text = "AMMO: " + activeGun.currentAmmo;
 
         firePoint.position = activeGun.firePoint.position;
+    }
+
+    public void AddGun(string gunToAdd) 
+    {
+        Debug.Log("Adding " + gunToAdd);
+        bool gunUnlocked = false;
+
+        if (unlockableGuns.Count > 0) 
+        {
+            for (int i = 0; i < unlockableGuns.Count; i++) 
+            {
+                if (unlockableGuns[i].gunName == gunToAdd)
+                {
+                    gunUnlocked = true;
+                    guns.Add(unlockableGuns[i]);
+                    unlockableGuns.RemoveAt(i);
+
+                    i = unlockableGuns.Count;
+                }
+            }
+        }
+        Debug.Log("gunUnlocked = " + gunUnlocked);
+        if (gunUnlocked) {
+            currentGunIndex = guns.Count - 2;
+            SwitchGun();
+        }
     }
 }
