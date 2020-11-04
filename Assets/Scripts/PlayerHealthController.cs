@@ -37,6 +37,8 @@ public class PlayerHealthController : MonoBehaviour
         if (invincibleCounter <= 0)
         {
             currentHealth -= damage;
+            UIController.instance.ShowDamage();
+            
             if (currentHealth <= 0){
                 gameObject.SetActive(false);
                 currentHealth = 0;
